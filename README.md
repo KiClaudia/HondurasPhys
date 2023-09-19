@@ -14,3 +14,13 @@ Testing from rstudio
 BCI script created, calculate BCI for females and males, created new data sheet based on it CSV.
 
 BCIphysFem script created. use to check if BCI affects phys measures for female. didn't check assumptions, used this as prelimiary test. will check again when running actual regression for each phys variable
+
+# 9/19/2023
+BCIphysMal script created. same as above ^^
+
+Summary ---> preliminary analysis tells us that BCI does not affect PHYS. Sex does affect phys for dROM, BKA, T (will need to do stats on those with the sexes separate)
+
+folNumBCI script made to see correlations between follicle number and BCI, none
+Now that we know BCI is not related to follicle number, we can ignore it for future models in the folnum series
+
+for the folNum series, also looked at SVL, mass, drom, OXY, cort, T, bka
