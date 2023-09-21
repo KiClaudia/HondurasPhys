@@ -23,4 +23,9 @@ Summary ---> preliminary analysis tells us that BCI does not affect PHYS. Sex do
 folNumBCI script made to see correlations between follicle number and BCI, none
 Now that we know BCI is not related to follicle number, we can ignore it for future models in the folnum series
 
-for the folNum series, also looked at SVL, mass, drom, OXY, cort, T, bka
+for the folNum series, also looked at SVL, mass, drom, OXY, cort, T, bka, glucose
+
+# 9/21/2023
+folSizePhys_code folder made. all scripts in here will be looking at whether follicle size is related to phys or morphometric measures
+
+Used linear regression for normal data. 
