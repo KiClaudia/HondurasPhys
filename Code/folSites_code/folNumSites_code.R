@@ -1,49 +1,49 @@
-# FEMALES ONLY: Is follicle size affected by site? I.e. do certain sites have more iguanas with larger follicles? biologically meaning are some sites further along in reproduction
+# FEMALES ONLY: Is follicle number affected by site? I.e. do certain sites have more iguanas with more follicles? biologically meaning are some sites further along in reproduction
 library(tidyverse)
 library(ggpubr)
 library(rstatix)
-library(FSA)
 
 data <- read.csv("C:/Users/claud/OneDrive - USU/Desktop/Ctenosaura oedirhina/Honduras trip 2022/HN2022analysis/HondurasPhys/workingdata/masterWithFemBCI.csv")
 View(data)
 # we have 22 females reproductive and non-reproductive
 
 fem <- data %>%
-  mutate(avgfolsize = rowMeans(select(., size_left_cm ,size_right_cm))) %>%
-  select("phys_ID", "site", "avgfolsize", "size_left_cm", "size_right_cm")
+  select("phys_ID", "site", "total_follicles", "BCI_fem", "month_caught")
 str(fem)
 fem$site <- as.factor(fem$site)
-fem
+fem$month_caught <- as.factor(fem$month_caught)
+
+# how does month caught affect this? We know that in general, may iguanas have larger follicles
+may <- fem %>%
+  filter(month_caught == "may")
+ggplot(fem, aes(x=site, y=total_follicles)) + 
+  geom_point() +
+  geom_point(data=may, aes(x=site, y=total_follicles), colour="red", size = 3) # Looks like may iguanas may be pulling GL down, outlier for GR
+
+# take out May iguanas to avoid confounding factor
+df <- fem %>%
+  filter(month_caught == "april")
 
 # visualize
-plot(fem$avgfolsize ~ fem$site) # seems like there will be differences
+plot(df$total_follicles ~ df$site) # seems like there will be differences
 
 # outliers
-fem %>% 
+df %>% 
   group_by(site) %>%
-  identify_outliers(avgfolsize) # no extreme outliers
+  identify_outliers(total_follicles) # no extreme outliers
 
 # normality
-model <- lm(avgfolsize ~ site, data = fem)
-ggqqplot(residuals(model)) # not normal
-
-# transform data to make normal, log(0) is undefined so inflate and then log
-hist((fem$avgfolsize))
-fem$avgfolsize <- (log(fem$avgfolsize + 0.001))
+model <- lm(total_follicles ~ site * BCI_fem, data = df)
+ggqqplot(residuals(model)) # looks okay
 
 # homogeneity of variance
 plot(model, 1)
-fem %>% levene_test(avgfolsize ~ site) # not great but okay
+df %>% levene_test(total_follicles ~ site) # looks good
 
-# we cANNOT run anova as the data is normal and we do not meet all the assumptions. the homogeneity is also not great. we will run kruskal wallis
+# running the anova
+anova <- df %>% anova_test(total_follicles ~ site * BCI_fem)
+anova
 
-# kruskal wallis test
-
-kmodel <- kruskal.test(fem$avgfolsize ~ fem$site)
-kmodel
-
-# post hoc Dunn test
-dunnTest(avgfolsize ~ site,
-         data = fem,
-         method = "holm"
-)
+# post hoc tukey
+pwc <- df %>% tukey_hsd(total_follicles ~ site)
+pwc

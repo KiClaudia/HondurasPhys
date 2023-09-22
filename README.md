@@ -35,3 +35,4 @@ We need to take into consideration month caught for the analysis we did
 Checked for BCI fem and mal 
 Checked month_caught for folSize series. look at script to see how, graphically.
 Checked month_caught for folNum series. look at script to see how, graphically.
+Checked month_caught and BCI for follicle site analysis
