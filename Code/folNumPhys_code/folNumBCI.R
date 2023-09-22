@@ -26,7 +26,7 @@ cor(fem1$total_follicles,fem1$BCI_fem) # correlation close to 0
 hist((fem1$total_follicles))
 hist((fem1$BCI_fem))
 
-model <- lm(total_follicles ~ BCI_fem + month_caught, data = fem1)
+model <- lm(total_follicles ~ BCI_fem * month_caught, data = fem1)
 summary(model)
 par(mfrow = c(2, 2))
 plot(model)
@@ -37,7 +37,7 @@ fem1 <- fem1 %>%
 fem1
 
 # rerun model
-model <- lm(total_follicles ~ BCI_fem, data = fem1)
+model <- lm(total_follicles ~ BCI_fem * month_caught, data = fem1)
 summary(model)
 par(mfrow = c(2, 2))
 plot(model)

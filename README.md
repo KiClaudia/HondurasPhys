@@ -33,4 +33,4 @@ Used linear regression for normal data.
 # 9/22/2023
 We need to take into consideration month caught for the analysis we did
 Checked for BCI fem and mal 
-Put month_caught as part of the model for folNum series, it does not affect anything
+Checked month_caught for folSize series. look at script to see how, graphically.
