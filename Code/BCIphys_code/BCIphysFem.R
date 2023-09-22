@@ -22,3 +22,14 @@ summary(cort)
 # Does BCI play a role in t? NO
 t <- lm(data$t ~ data$BCI_fem)
 summary(t)
+
+# Does BCI play a role in glucose? NO
+glu <- lm(data$glucose ~ data$BCI_fem)
+summary(glu)
+
+# Is BCI affected by month caught? NO
+month <- aov(data$BCI_fem ~ data$month_caught)
+summary(month)
+
+str(data$month_caught)
+data$month_caught <- as.factor(data$month_caught)

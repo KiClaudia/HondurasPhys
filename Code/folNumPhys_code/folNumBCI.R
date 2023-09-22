@@ -6,6 +6,7 @@ data <- read.csv("C:/Users/claud/OneDrive - USU/Desktop/Ctenosaura oedirhina/Hon
 View(data)
 
 data$sex <- as.factor(data$sex)
+data$month_caught <- as.factor(data$month_caught)
 
 fem <- data %>%
   filter(sex == "2") %>%
@@ -14,7 +15,7 @@ View(fem)
 
 #--------------- Does BCI affect number of total follicles?----------------
 fem1 <- fem %>%
-  select("BCI_fem", "total_follicles", "site", "phys_ID")
+  select("BCI_fem", "total_follicles", "site", "phys_ID", "month_caught")
 fem1
 
 plot(fem1$total_follicles~fem1$BCI_fem) # does not seem significant
@@ -25,7 +26,7 @@ cor(fem1$total_follicles,fem1$BCI_fem) # correlation close to 0
 hist((fem1$total_follicles))
 hist((fem1$BCI_fem))
 
-model <- lm(total_follicles ~ BCI_fem, data = fem1)
+model <- lm(total_follicles ~ BCI_fem + month_caught, data = fem1)
 summary(model)
 par(mfrow = c(2, 2))
 plot(model)

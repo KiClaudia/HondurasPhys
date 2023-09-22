@@ -16,10 +16,11 @@ View(fem)
 
 #--------------- Does BKA affect number of total follicles?----------------
 fem1 <- fem %>%
-  select("total_follicles", "bka", "site", "phys_ID") %>%
+  select("total_follicles", "bka", "site", "phys_ID", "month_caught") %>%
   drop_na()
 fem1
 
+fem1$month_caught <- as.factor(fem1$month_caught)
 plot(fem1$total_follicles ~ fem1$bka) # nothing 
 
 cor(fem1$total_follicles, fem1$bka) # no correlation
@@ -42,7 +43,7 @@ fem1 <- fem1 %>%
   mutate(folbeta = (total_follicles/100))
 fem1
 
-betamodel <- betareg::betareg(fem1$folbeta ~ fem1$beta)
+betamodel <- betareg::betareg(fem1$folbeta ~ fem1$beta + fem1$month_caught)
 summary(betamodel)
 
 # predictor BKA is not significant even though intercept is which doesnt mean anythin (when bka is 0, they have -1 follicles)

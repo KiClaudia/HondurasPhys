@@ -12,6 +12,8 @@ data <- read.csv("C:/Users/claud/OneDrive - USU/Desktop/Ctenosaura oedirhina/Hon
 View(data)
 
 data$sex <- as.factor(data$sex)
+data$month_caught <- as.factor(data$month_caught)
+
 
 fem <- data %>%
   filter(sex == "2") %>%
@@ -20,7 +22,7 @@ View(fem)
 
 #--------------- Does Testosterone affect number of total follicles?----------------
 fem1 <- fem %>%
-  select("total_follicles", "t", "site", "phys_ID") %>%
+  select("total_follicles", "t", "site", "phys_ID", "month_caught") %>%
   drop_na()
 fem1
 
@@ -37,7 +39,7 @@ hist((fem1$total_follicles)) #normal
 hist((fem1$t)) #  normal
 
 # LM model
-model <- lm(total_follicles ~ (t), data = fem1)
+model <- lm(total_follicles ~ t + month_caught, data = fem1)
 summary(model)
 par(mfrow = c(2, 2)) # assumptions okay since data is normal, no significance
 plot(model)

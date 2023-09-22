@@ -7,6 +7,8 @@ data <- read.csv("C:/Users/claud/OneDrive - USU/Desktop/Ctenosaura oedirhina/Hon
 View(data)
 
 data$sex <- as.factor(data$sex)
+data$month_caught <- as.factor(data$month_caught)
+
 
 fem <- data %>%
   filter(sex == "2") %>%
@@ -15,7 +17,7 @@ View(fem)
 
 #--------------- Does mass affect number of total follicles?----------------
 fem1 <- fem %>%
-  select("total_follicles", "mass_g", "site", "phys_ID")
+  select("total_follicles", "mass_g", "site", "phys_ID", "month_caught")
 fem1
 
 plot(fem1$total_follicles ~ fem1$mass_g) 
@@ -27,7 +29,7 @@ hist((fem1$total_follicles)) #normal
 hist((fem1$mass_g)) # normal
 
 # model
-model <- lm(total_follicles ~ mass_g, data = fem1)
+model <- lm(total_follicles ~ mass_g + month_caught, data = fem1)
 summary(model)
 par(mfrow = c(2, 2)) # data looks homoskedastic (scale-loc is pretty horizontal) and linear(res fit no pattern) and normal (qq)
 plot(model)

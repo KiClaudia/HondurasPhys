@@ -12,6 +12,7 @@ data <- read.csv("C:/Users/claud/OneDrive - USU/Desktop/Ctenosaura oedirhina/Hon
 View(data)
 
 data$sex <- as.factor(data$sex)
+data$month_caught <- as.factor(data$month_caught)
 
 fem <- data %>%
   filter(sex == "2") %>%
@@ -20,7 +21,7 @@ View(fem)
 
 #--------------- Does CORT affect number of total follicles?----------------
 fem1 <- fem %>%
-  select("total_follicles", "cort", "site", "phys_ID") %>%
+  select("total_follicles", "cort", "site", "phys_ID", "month_caught") %>%
   drop_na()
 fem1
 
@@ -33,11 +34,11 @@ hist((fem1$total_follicles)) #normal
 hist((fem1$cort)) # not normal
 
 # LM model
-model <- lm(total_follicles ~ (cort), data = fem1)
+model <- lm(total_follicles ~ cort + month_caught, data = fem1)
 summary(model)
 par(mfrow = c(2, 2)) # data does not meet assumptions, cannot use LM, tried to log does not work
 plot(model)
 
 # Rank based estimation regression uses estimators and inference that that are robust to outliers. used in lm like situations or anova like situaions
-model.r = rfit(total_follicles ~ cort, data = fem1)
+model.r = rfit(total_follicles ~ cort + month_caught, data = fem1)
 summary(model.r)

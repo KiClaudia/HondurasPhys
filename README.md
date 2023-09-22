@@ -29,3 +29,8 @@ for the folNum series, also looked at SVL, mass, drom, OXY, cort, T, bka, glucos
 folSizePhys_code folder made. all scripts in here will be looking at whether follicle size is related to phys or morphometric measures
 
 Used linear regression for normal data. 
+
+# 9/22/2023
+We need to take into consideration month caught for the analysis we did
+Checked for BCI fem and mal 
+Put month_caught as part of the model for folNum series, it does not affect anything

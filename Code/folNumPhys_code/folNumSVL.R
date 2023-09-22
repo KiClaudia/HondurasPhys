@@ -7,6 +7,8 @@ data <- read.csv("C:/Users/claud/OneDrive - USU/Desktop/Ctenosaura oedirhina/Hon
 View(data)
 
 data$sex <- as.factor(data$sex)
+data$month_caught <- as.factor(data$month_caught)
+
 
 fem <- data %>%
   filter(sex == "2") %>%
@@ -15,7 +17,7 @@ View(fem)
 
 #--------------- Does SVL affect number of total follicles?----------------
 fem1 <- fem %>%
-  select("total_follicles", "SVL_mm", "site", "phys_ID")
+  select("total_follicles", "SVL_mm", "site", "phys_ID", "month_caught")
 fem1
 
 plot(fem1$total_follicles ~ fem1$SVL_mm) # seems like as SVL increase, total follicles increase
@@ -30,7 +32,7 @@ fem1 <- fem1 %>%
 fem1
 
 # model
-model <- lm(total_follicles ~ SVL_mm, data = fem1)
+model <- lm(total_follicles ~ SVL_mm+ month_caught, data = fem1)
 summary(model)
 par(mfrow = c(2, 2)) # data looks homoskedastic (scale-loc is pretty horizontal) and linear(res fit no pattern) and normal (qq)
 plot(model)
