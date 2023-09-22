@@ -21,6 +21,12 @@ fem1 <- fem %>%
 fem1
 
 plot(fem1$total_follicles ~ fem1$SVL_mm) # seems like as SVL increase, total follicles increase
+may <- fem %>%
+  filter(month_caught == "may")
+ggplot(fem1, aes(x=SVL_mm, y=total_follicles)) + 
+  geom_point() +
+  geom_point(data=may, aes(x=SVL_mm, y=total_follicles), colour="red", size = 3) 
+# May iguanas do not seem to have a pattern
 
 cor(fem1$total_follicles, fem1$SVL_mm) # correlation close to 1, positive association strong
 

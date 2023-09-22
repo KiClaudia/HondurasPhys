@@ -20,13 +20,19 @@ fem1
 
 plot(fem1$total_follicles~fem1$BCI_fem) # does not seem significant
 
+may <- fem %>%
+  filter(month_caught == "may")
+ggplot(fem1, aes(x=BCI_fem, y=total_follicles)) + 
+  geom_point() +
+  geom_point(data=may, aes(x=BCI_fem, y=total_follicles), colour="red", size = 3) # is spread out so it is okay
+
 cor(fem1$total_follicles,fem1$BCI_fem) # correlation close to 0
 
 # data is not linear nor homoskedastic but normal
 hist((fem1$total_follicles))
 hist((fem1$BCI_fem))
 
-model <- lm(total_follicles ~ BCI_fem * month_caught, data = fem1)
+model <- lm(total_follicles ~ BCI_fem, data = fem1)
 summary(model)
 par(mfrow = c(2, 2))
 plot(model)
@@ -37,7 +43,7 @@ fem1 <- fem1 %>%
 fem1
 
 # rerun model
-model <- lm(total_follicles ~ BCI_fem * month_caught, data = fem1)
+model <- lm(total_follicles ~ BCI_fem, data = fem1)
 summary(model)
 par(mfrow = c(2, 2))
 plot(model)

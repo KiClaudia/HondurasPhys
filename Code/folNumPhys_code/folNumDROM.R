@@ -27,23 +27,21 @@ fem1 <- fem %>%
 fem1
 
 plot(fem1$total_follicles ~ fem1$drom) # nothing 
+may <- fem %>%
+  filter(month_caught == "may")
+ggplot(fem1, aes(x=drom, y=total_follicles)) + 
+  geom_point() +
+  geom_point(data=may, aes(x=drom, y=total_follicles), colour="red", size = 3) # take out may
 
-cor(fem1$total_follicles, fem1$drom) # no correlation
+fem2 <- fem1 %>%
+  filter(month_caught == "april")
+
+cor(fem2$total_follicles, fem2$drom) # no correlation
 
 # Assumption checking
-hist((fem1$total_follicles)) #normal
-hist((fem1$drom)) # normal
-
-# LM model
-model <- lm(total_follicles ~ drom + month_caught, data = fem1)
-summary(model)
-par(mfrow = c(2, 2)) # data does not meet assumptions, cannot use LM, tried to log dROm does not work
-plot(model)
-
-# Kendall-Theil Sen Siegel nonparametric linear repgression is for 1 x and 1 y, uses lines between pair of points and uses median of slopes of these lines
-modelk= mblm(total_follicles ~ drom, data = fem1)
-summary(modelk)
+hist((fem2$total_follicles)) # not normal
+hist((fem2$drom)) # normal
 
 # Rank based estimation regression uses estimators and inference that that are robust to outliers. used in lm like situations or anova like situaions
-model.r = rfit(total_follicles ~ drom + month_caught, data = fem1)
+model.r = rfit(total_follicles ~ drom , data = fem2)
 summary(model.r)

@@ -27,6 +27,11 @@ fem1 <- fem %>%
 fem1
 
 plot(fem1$total_follicles ~ fem1$t) # nothing 
+may <- fem %>%
+  filter(month_caught == "may")
+ggplot(fem1, aes(x=t, y=total_follicles)) + 
+  geom_point() +
+  geom_point(data=may, aes(x=t, y=total_follicles), colour="red", size = 3) # is spread out so it is okay
 
 cor(fem1$total_follicles, fem1$t) # no correlation
 
@@ -39,7 +44,7 @@ hist((fem1$total_follicles)) #normal
 hist((fem1$t)) #  normal
 
 # LM model
-model <- lm(total_follicles ~ t + month_caught, data = fem1)
+model <- lm(total_follicles ~ t, data = fem1)
 summary(model)
 par(mfrow = c(2, 2)) # assumptions okay since data is normal, no significance
 plot(model)

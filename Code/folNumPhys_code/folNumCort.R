@@ -26,7 +26,11 @@ fem1 <- fem %>%
 fem1
 
 plot(fem1$total_follicles ~ fem1$cort) # nothing 
-
+may <- fem %>%
+  filter(month_caught == "may")
+ggplot(fem1, aes(x=cort, y=total_follicles)) + 
+  geom_point() +
+  geom_point(data=may, aes(x=cort, y=total_follicles), colour="red", size = 3) # is spread out so it is okay
 cor(fem1$total_follicles, fem1$cort) # no correlation
 
 # Assumption checking

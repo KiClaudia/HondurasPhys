@@ -23,6 +23,12 @@ fem1
 fem1$month_caught <- as.factor(fem1$month_caught)
 plot(fem1$total_follicles ~ fem1$bka) # nothing 
 
+may <- fem %>%
+  filter(month_caught == "may")
+ggplot(fem1, aes(x=bka, y=total_follicles)) + 
+  geom_point() +
+  geom_point(data=may, aes(x=bka, y=total_follicles), colour="red", size = 3) # is spread out so it is okay
+
 cor(fem1$total_follicles, fem1$bka) # no correlation
 
 # BKA requires beta distribution
