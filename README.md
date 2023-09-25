@@ -36,3 +36,4 @@ Checked for BCI fem and mal
 Checked month_caught for folSize series. look at script to see how, graphically.
 Checked month_caught for folNum series. look at script to see how, graphically.
 Checked month_caught and BCI for follicle site analysis
+Editted BCI_code to make a new CSV that has BCI from both sexes

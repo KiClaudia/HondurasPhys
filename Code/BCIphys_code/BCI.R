@@ -27,8 +27,8 @@ plot(fem$SVL_mm ~ fem$mass_g)
 # ourselves using this formula: y=mx+b (this gives us calculated residual, y is SVL, x is mass)
 # actual measured SVL - calculated SVL = residual, double check with above residuals
 fem <- fem %>%
-  mutate(calcFemSVL = ((mass_g*0.20323)+106.91556)) %>%
-  mutate(BCI_fem = SVL_mm - calcFemSVL)
+  mutate(calcSVL = ((mass_g*0.20323)+106.91556)) %>%
+  mutate(BCI_fem = SVL_mm - calcSVL)
 
 View(fem)
 # write csv
@@ -43,8 +43,20 @@ malbci <- resid(malmod)
 plot(mal$SVL_mm ~ mal$mass_g)
 
 mal <- mal %>%
-  mutate(calcmalSVL = ((mass_g*0.1286)+147)) %>%
-  mutate(BCI_mal = SVL_mm - calcmalSVL)
+  mutate(calcSVL = ((mass_g*0.1286)+147)) %>%
+  mutate(BCI_mal = SVL_mm - calcSVL)
 View(mal)
 
 write.csv(mal, "C:/Users/claud/OneDrive - USU/Desktop/Ctenosaura oedirhina/Honduras trip 2022/HN2022analysis/HondurasPhys/workingdata/masterWithMalBCI.csv")
+
+
+# merge the two so we have a master with BCI of both sexes
+mal2 <- mal %>%
+  rename(BCI = BCI_mal)
+View(mal2)
+fem2 <- fem %>%
+  rename(BCI = BCI_fem)
+total <- rbind(fem2, mal2)
+View(total)
+
+write.csv(total, "C:/Users/claud/OneDrive - USU/Desktop/Ctenosaura oedirhina/Honduras trip 2022/HN2022analysis/HondurasPhys/workingdata/masterWithBothBCI.csv")
