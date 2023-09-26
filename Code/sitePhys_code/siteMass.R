@@ -74,7 +74,6 @@ mal2 %>% levene_test(mass_g ~ site)
 
 # ANOVA
 
-# Kruskal-Wallis
 res.aovf <- fem2 %>% anova_test(mass_g ~ site)
 res.aovf
 res.aovm <- mal2 %>% anova_test(mass_g ~ site)

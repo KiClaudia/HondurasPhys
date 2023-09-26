@@ -38,5 +38,9 @@ Checked month_caught for folNum series. look at script to see how, graphically.
 Checked month_caught and BCI for follicle site analysis
 Editted BCI_code to make a new CSV that has BCI from both sexes
 
-#9/25/2023
+# 9/25/2023
 New script series (sitePhys) to look at interactions between site and physiology/morphometrics. My intention is to do an ANOVA but visually assessing whether month caught may have affected the metrics. 
+
+# 9/26/2023
+Worked on site dROM and site OXY, taking into account sex, monthcaught, BCI, in that order
+Also did cort, t, 
