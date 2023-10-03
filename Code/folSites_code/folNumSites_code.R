@@ -8,7 +8,7 @@ View(data)
 # we have 22 females reproductive and non-reproductive
 
 fem <- data %>%
-  select("phys_ID", "site", "total_follicles", "BCI_fem", "month_caught")
+  select("phys_ID", "site", "total_follicles", "BCI_fem", "month_caught", "SVL_mm")
 str(fem)
 fem$site <- as.factor(fem$site)
 fem$month_caught <- as.factor(fem$month_caught)
@@ -47,3 +47,8 @@ anova
 # post hoc tukey
 pwc <- df %>% tukey_hsd(total_follicles ~ site)
 pwc
+
+# does SVL affect this?
+anova2 <- df %>% anova_test(total_follicles ~ site * SVL_mm)
+anova
+

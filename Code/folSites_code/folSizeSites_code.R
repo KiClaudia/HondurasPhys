@@ -10,7 +10,7 @@ View(data)
 
 fem <- data %>%
   mutate(avgfolsize = rowMeans(select(., size_left_cm ,size_right_cm))) %>%
-  select("phys_ID", "site", "avgfolsize", "size_left_cm", "size_right_cm", "month_caught", "BCI_fem")
+  select("phys_ID", "site", "avgfolsize", "size_left_cm", "size_right_cm", "month_caught", "BCI_fem", "SVL_mm")
 str(fem)
 fem$month_caught <- as.factor(fem$month_caught)
 fem$site <- as.factor(fem$site)
@@ -38,6 +38,9 @@ df %>%
 # how does BCI play a role in this (i.e. does meridian just have smaller iguanas so they have smaller follicles?)
 ggplot(df, aes(x = site, y = BCI_fem)) +
   geom_point() # Meridian does have the 2 females with the lowest BCI BUT other iguanas at Meridian who have way higher BCI still have similar follicle sizes
+ggplot(df, aes(x = site, y = SVL_mm)) +
+  geom_point() # Meridian has smaller iguanas
+
 
 # normality
 model <- lm(avgfolsize ~ site * BCI_fem, data = df)
@@ -63,3 +66,4 @@ dunnTest(avgfolsize ~ site,
          data = df,
          method = "holm"
 )
+

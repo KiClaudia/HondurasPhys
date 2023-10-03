@@ -43,4 +43,8 @@ New script series (sitePhys) to look at interactions between site and physiology
 
 # 9/26/2023
 Worked on site dROM and site OXY, taking into account sex, monthcaught, BCI, in that order
-Also did cort, t, 
+
+# 10/3/2023
+Used chi-square to compare frequency data (tail loss and parasite presence) with site, sex, month_caught, tailloss/parasite. scripts are called parasite and tailLoss
+
+parasitePhys script uses variations of t.tests to look at whether presence/absence of parasites effects phys measures and morphometrics. exactly the same for tailLossPhys
