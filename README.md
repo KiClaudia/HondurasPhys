@@ -48,3 +48,6 @@ Worked on site dROM and site OXY, taking into account sex, monthcaught, BCI, in 
 Used chi-square to compare frequency data (tail loss and parasite presence) with site, sex, month_caught, tailloss/parasite. scripts are called parasite and tailLoss
 
 parasitePhys script uses variations of t.tests to look at whether presence/absence of parasites effects phys measures and morphometrics. exactly the same for tailLossPhys
+
+# 10/4/2023
+in folder folSites, added new script reproductiveSitePorportion to look at whether there were differences in proportion of reproductive females between sites. chi-square
