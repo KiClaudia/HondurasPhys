@@ -10,7 +10,7 @@ View(data)
 
 fem <- data %>%
   mutate(avgfolsize = rowMeans(select(., size_left_cm ,size_right_cm))) %>%
-  select("phys_ID", "site", "avgfolsize", "size_left_cm", "size_right_cm", "month_caught", "BCI_fem", "SVL_mm")
+  select("phys_ID", "site", "avgfolsize", "size_left_cm", "size_right_cm", "month_caught", "BCI_fem", "SVL_mm", "mass_g")
 str(fem)
 fem$month_caught <- as.factor(fem$month_caught)
 fem$site <- as.factor(fem$site)
@@ -67,3 +67,7 @@ dunnTest(avgfolsize ~ site,
          method = "holm"
 )
 
+df %>% 
+  select(avgfolsize, site) %>%
+  group_by(site) %>%
+  get_summary_stats(type = c("mean_se"))

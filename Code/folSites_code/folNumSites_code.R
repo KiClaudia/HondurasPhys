@@ -8,7 +8,7 @@ View(data)
 # we have 22 females reproductive and non-reproductive
 
 fem <- data %>%
-  select("phys_ID", "site", "total_follicles", "BCI_fem", "month_caught", "SVL_mm")
+  select("phys_ID", "site", "total_follicles", "BCI_fem", "month_caught", "SVL_mm", "mass_g")
 str(fem)
 fem$site <- as.factor(fem$site)
 fem$month_caught <- as.factor(fem$month_caught)
@@ -48,7 +48,24 @@ anova
 pwc <- df %>% tukey_hsd(total_follicles ~ site)
 pwc
 
+# summary stats
+df %>%
+  select(site, total_follicles) %>%
+  group_by(site) %>%
+  get_summary_stats(type = "mean_se")
+
 # does SVL affect this?
 anova2 <- df %>% anova_test(total_follicles ~ site * SVL_mm)
-anova
+anova2
 
+
+
+
+# power test
+library(pwr)
+pwr.f2.test(u = 2, v = 2, f2 = 0.363, sig.level = 0.05, power = NULL)
+
+anova3 <- df %>% anova_test(total_follicles ~ site * SVL_mm *BCI_fem)
+anova3
+# if I run the model with just site, I have an ~77% power, if I run it with a second fixed effect (BCI or SVL), reduces it to 63% and 51% respectively
+# running a model with all 3 fixed effecs has power of 1%...
