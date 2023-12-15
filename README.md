@@ -51,3 +51,6 @@ parasitePhys script uses variations of t.tests to look at whether presence/absen
 
 # 10/4/2023
 in folder folSites, added new script reproductiveSitePorportion to look at whether there were differences in proportion of reproductive females between sites. chi-square
+
+# 12/14/2023
+new 2016 parasite data from Ashley Goode. New script to compare 2016 parasites and 2022 parasites for GL
