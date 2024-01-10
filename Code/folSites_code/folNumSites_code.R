@@ -41,9 +41,9 @@ plot(model, 1)
 df %>% levene_test(total_follicles ~ site) # looks good
 
 # running the anova
-anova <- df %>% anova_test(total_follicles ~ site * BCI_fem)
+anova <- anova_test(total_follicles ~ site * BCI_fem, data = df)
 anova
-
+summary(anova)
 # post hoc tukey
 pwc <- df %>% tukey_hsd(total_follicles ~ site)
 pwc
@@ -55,11 +55,9 @@ df %>%
   get_summary_stats(type = "mean_se")
 
 # does SVL affect this?
-anova2 <- df %>% anova_test(total_follicles ~ site * SVL_mm)
+anova2 <- anova_test(total_follicles ~ site * SVL_mm, data = df)
 anova2
-
-
-
+summary(anova2)
 
 # power test
 library(pwr)
