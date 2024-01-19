@@ -54,3 +54,6 @@ in folder folSites, added new script reproductiveSitePorportion to look at wheth
 
 # 12/14/2023
 new 2016 parasite data from Ashley Goode. New script to compare 2016 parasites and 2022 parasites for GL
+
+# 1/18/2024
+Added a new script in parasites looking at trends in 2016 parasite data. using same chi square methods. what is the proportion of iguanas at GL with blood and fecal parasites?
