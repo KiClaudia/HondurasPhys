@@ -24,33 +24,40 @@ str(data2)
 
 # SVL v Sites---------------------------------------------
 
-p1 <- ggplot(data = data2, aes(x=site, y=SVL_mm, color = sex)) +
+p1 <- ggplot(data = data2, aes(x=site, y=SVL_mm, fill = sex)) +
   geom_boxplot() +  
-  geom_jitter(shape=16, position=position_jitter(0.2)) +
-  labs(title="FIG.XX SVL of female and male iguanas at each site",x="Site", y = "Snout Vent Length (mm)")+
+  labs(x="Study Locations", y = "Snout Vent Length (mm)", fill = "Sex")+
+  scale_x_discrete(labels=c("Site 1", "Site 2", "Site 3")) +
   theme_classic() +
   coord_cartesian(ylim=c(0,400)) +
-  scale_fill_discrete(labels = c("Male", "Female")) +
-  annotate("text", x = 1, y = 400, label = "a", color = "black", size = 5) +
-  annotate("text", x = 2, y = 365, label = "b", color = "black", size = 5) +
-  annotate("text", x = 3, y = 322, label = "c", color = "black", size = 5) 
+  annotate("text", x = 1, y = 400, label = "a", color = "red", size = 5) +
+  annotate("text", x = 2, y = 365, label = "b", color = "red", size = 5) +
+  annotate("text", x = 3, y = 322, label = "c", color = "red", size = 5) +
+  scale_fill_discrete(name = "Sex", labels = c("Male", "Female"), 
+  type = c("royalblue1", "salmon")) 
 p1
 
 # Mass v Sites---------------------------------------------
 
-p2 <- ggplot(data = data2, aes(x=site, y=mass_g, color = sex)) +
+p2 <- ggplot(data = data2, aes(x=site, y=mass_g, fill = sex)) +
   geom_boxplot() +  
-  geom_jitter(shape=16, position=position_jitter(0.2)) +
-  labs(title="FIG.XX Mass of female and male iguanas at each site",x="Site", y = "Mass (g)")+
+  labs(x="Study Locations", y = "Mass (g)", fill = "Sex") +
+  scale_x_discrete(labels=c("Site 1", "Site 2", "Site 3")) +
   theme_classic() +
   coord_cartesian(ylim=c(0,2000)) +
-  scale_fill_discrete(labels = c("Male", "Female")) +
-  annotate("text", x = 1, y = 2000, label = "a", color = "black", size = 5) +
-  annotate("text", x = 2, y = 1700, label = "b", color = "black", size = 5) +
-  annotate("text", x = 3, y = 1400, label = "c", color = "black", size = 5) 
+  annotate("text", x = 1, y = 2000, label = "a", color = "red", size = 5) +
+  annotate("text", x = 2, y = 1700, label = "b", color = "red", size = 5) +
+  annotate("text", x = 3, y = 1400, label = "c", color = "red", size = 5) +
+  scale_fill_discrete(name = "Sex", labels = c("Male", "Female"), 
+                      type = c("royalblue1", "salmon")) 
+
 p2
 
 # Put figures together-----------------------------------------------
 nested <- (p1/p2)+
   plot_annotation(tag_levels = 'A')
 nested
+
+pdf()
+nested
+dev.off()

@@ -22,11 +22,18 @@ data2
 p1 <- ggplot(data = data2, aes(x=site, y=glucose, fill = site)) +
   geom_boxplot() +  
   geom_jitter(shape=16, position=position_jitter(0.2)) +
-  labs(title="FIG.XX Glucose of female and male iguanas at each site",x="Site", y = "Glucose (mg/dL)")+
+  labs(x="Study Locations", y = "Glucose (mg/dL)")+
+  scale_x_discrete(labels=c("Site 1", "Site 2", "Site 3")) +
   theme_classic() +
   coord_cartesian(ylim=c(0,300)) +
   annotate("text", x = 1, y = 300, label = "ac", color = "red", size = 5) +
   annotate("text", x = 2, y = 300, label = "bc", color = "red", size = 5) +
-  annotate("text", x = 3, y = 300, label = "c", color = "red", size = 5) 
+  annotate("text", x = 3, y = 300, label = "c", color = "red", size = 5) +
+  theme(legend.position = "none") +
+  scale_fill_brewer(palette="Dark2")
+
 p1
 
+pdf()
+p1
+dev.off()

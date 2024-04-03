@@ -76,3 +76,11 @@ cor(mal$BCI,mal$bka)
 # Kruskal-Wallis
 kruskal.test(bka ~ site, data = femapr)
 kruskal.test(bka ~ site, data = mal)
+
+# summary
+mal %>%
+  group_by("site") %>%
+  get_summary_stats(type = c("mean_se"))
+femapr %>%
+  group_by("site") %>%
+  get_summary_stats(type = c("mean_se"))
