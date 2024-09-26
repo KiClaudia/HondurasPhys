@@ -34,7 +34,8 @@ p1 <- ggplot(data = data2, aes(x=site, y=SVL_mm, fill = sex)) +
   annotate("text", x = 2, y = 365, label = "b", color = "red", size = 5) +
   annotate("text", x = 3, y = 322, label = "c", color = "red", size = 5) +
   scale_fill_discrete(name = "Sex", labels = c("Male", "Female"), 
-  type = c("royalblue1", "salmon")) 
+  type = c("royalblue1", "salmon")) +
+  theme(text=element_text(family="Times New Roman", size=12))
 p1
 
 # Mass v Sites---------------------------------------------
@@ -49,7 +50,8 @@ p2 <- ggplot(data = data2, aes(x=site, y=mass_g, fill = sex)) +
   annotate("text", x = 2, y = 1700, label = "b", color = "red", size = 5) +
   annotate("text", x = 3, y = 1400, label = "c", color = "red", size = 5) +
   scale_fill_discrete(name = "Sex", labels = c("Male", "Female"), 
-                      type = c("royalblue1", "salmon")) 
+                      type = c("royalblue1", "salmon"))+
+  theme(text=element_text(family="Times New Roman", size=12))
 
 p2
 
