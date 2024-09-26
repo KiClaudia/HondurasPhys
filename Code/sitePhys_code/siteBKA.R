@@ -57,7 +57,7 @@ fem <- data2 %>%
 mal <- data2 %>%
   filter(sex == "1")
 
-# T.test to see if there are differences in t by MONTH-----------------
+# T.test to see if there are differences in bka by MONTH-----------------
 t.test(bka ~ month_caught, data = fem) # YES
 t.test(bka ~ month_caught, data = mal) # NO
 
@@ -82,5 +82,6 @@ mal %>%
   group_by("site") %>%
   get_summary_stats(type = c("mean_se"))
 femapr %>%
-  group_by("site") %>%
+  group_by("month") %>%
   get_summary_stats(type = c("mean_se"))
+
