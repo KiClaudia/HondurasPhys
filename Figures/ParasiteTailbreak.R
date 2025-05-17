@@ -37,9 +37,9 @@ p1 <- ggplot(data=data3, aes(x=x, y=y, fill = x)) +
   labs(x="Study Locations", y = "Percent of Iguanas Infested") +
   theme_minimal() +
   theme_classic() +
-  theme(text=element_text(family="Times New Roman", size=12)) +
+  theme(text=element_text(family="Times New Roman", size=16)) +
   scale_fill_brewer(palette="Dark2") +
-  geom_text(aes(label=(y)), vjust=1.6, color="black", size=3.5) +
+  geom_text(aes(label=(y)), vjust=1.6, color="black", size=5) +
   scale_y_continuous(labels = scales::percent) +
   theme(legend.position = "none") 
   
@@ -56,9 +56,9 @@ p2 <- ggplot(data=data4, aes(x=x, y=y, fill = x)) +
   labs(x="Study Locations", y = "Percent of Iguanas with Tail Break") +
   theme_minimal() +
   theme_classic() +
-  theme(text=element_text(family="Times New Roman", size=12))+
+  theme(text=element_text(family="Times New Roman", size=16))+
   scale_fill_brewer(palette="Dark2") +
-  geom_text(aes(label=(y)), vjust=1.6, color="black", size=3.5) +
+  geom_text(aes(label=(y)), vjust=1.6, color="black", size=5) +
   scale_y_continuous(labels = scales::percent) +
   theme(legend.position = "none") 
  
