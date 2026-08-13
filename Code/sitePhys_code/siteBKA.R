@@ -80,8 +80,16 @@ kruskal.test(bka ~ site, data = mal)
 # summary
 mal %>%
   group_by("site") %>%
-  get_summary_stats(type = c("mean_se"))
+  get_summary_stats(bka, type = c("mean_se"))
 femapr %>%
-  group_by("month") %>%
-  get_summary_stats(type = c("mean_se"))
+  group_by("site") %>%
+  get_summary_stats(bka, type = c("mean_se"))
+
+stupid <- femapr %>%
+  filter(site == "M")
+se(stupid$bka)
+mean(stupid$bka)
+se <- function(x) {
+  sd(x) / sqrt(length(x))
+}
 

@@ -121,3 +121,8 @@ res.aovmay
 boxplot(t ~ site, data = fem)
 boxplot(t ~ site, data = malAPR)
 boxplot(t ~ site, data = malMAY)
+
+malMAY %>% 
+  select(t, site) %>%
+  group_by(site) %>%
+  get_summary_stats(type = c("mean_se"))
