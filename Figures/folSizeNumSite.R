@@ -35,7 +35,7 @@ p1 <- ggplot(fem, aes(x=site, y=total_follicles, fill = site)) +
   annotate("text", x = 3, y = 10, label = "c", color = "red", size = 5)+
   theme(legend.position = "none") +
   scale_fill_brewer(palette="Dark2") +
-  theme(text=element_text(family="Times New Roman", size=12))
+  theme(axis.title = element_text(face = "bold"), text=element_text(family="Times New Roman", size=12))
 p1
 # Follicle size v Sites---------------------------------------------
 
@@ -51,11 +51,11 @@ p2 <- ggplot(fem, aes(x=site, y=avgfolsize, fill = site)) +
   annotate("text", x = 3, y = 2, label = "b", color = "red", size = 5)+
   theme(legend.position = "none") +
   scale_fill_brewer(palette="Dark2") +
-  theme(text=element_text(family="Times New Roman", size=12))
+  theme(axis.title = element_text(face = "bold"), text=element_text(family="Times New Roman", size=12))
 p2  
 # Put figures together-----------------------------------------------
 nested <- (p1/p2)+
   plot_annotation(tag_levels = 'A')
-pdf()
+png()
 nested
 dev.off()

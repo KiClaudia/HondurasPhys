@@ -12,6 +12,15 @@ data$sex <- as.factor(data$sex)
 FMdata <- data %>%
   filter(sex != "3")
 View(FMdata)
+# Does sex play a role in SVL? YES
+plot(FMdata$SVL_mm ~ FMdata$sex) # the intercept is *** but doesn't actually code for anything (we don't have a 0 sex (just 1 2)) so it doesn't mean anything even though it is significant
+t.test(SVL_mm ~ sex, data = FMdata)
+
+
+FMdata %>% 
+  select(SVL_mm, sex) %>%
+  group_by(sex) %>%
+  get_summary_stats(type = c("mean_se"))
 
 # Does sex play a role in dROM? YES
 plot(FMdata$drom ~ FMdata$sex) # the intercept is *** but doesn't actually code for anything (we don't have a 0 sex (just 1 2)) so it doesn't mean anything even though it is significant
